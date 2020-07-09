@@ -11,6 +11,7 @@ RUN set -ex \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         curl \
+        gnupg \
         gstreamer1.0-alsa \
         gstreamer1.0-fluendo-mp3 \
         gstreamer1.0-libav \
