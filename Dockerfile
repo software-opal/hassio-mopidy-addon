@@ -12,11 +12,6 @@ RUN set -ex \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         curl \
         gnupg \
-        gstreamer1.0-alsa \
-        gstreamer1.0-fluendo-mp3 \
-        gstreamer1.0-libav \
-        gstreamer1.0-plugins-bad \
-        gstreamer1.0-plugins-ugly \
         jq \
         libxml2-dev \
         libxslt-dev \
@@ -29,6 +24,14 @@ RUN set -ex \
     && apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
+RUN set -ex \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        gstreamer1.0-alsa \
+        gstreamer1.0-libav \
+        gstreamer1.0-plugins-bad \
+        gstreamer1.0-plugins-ugly \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
 RUN set -ex \
     && apt-get update \
