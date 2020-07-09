@@ -1,4 +1,4 @@
-FROM arm32v7/debian:stretch
+FROM arm32v7/debian:buster
 COPY qemu-arm-static /usr/bin
 
 ENV LANG C.UTF-8
