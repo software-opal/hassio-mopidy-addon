@@ -15,7 +15,7 @@ RUN set -ex \
         libxml2-dev \
         libxslt-dev \
         libz-dev \
-        python-crypto \
+        python3-crypto \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
@@ -49,10 +49,11 @@ RUN set -ex \
         mopidy \
         mopidy-local-sqlite \
         mopidy-spotify \
-        python-dev \
+        python3-dev \
+        python3-pip \
     && curl -L https://bootstrap.pypa.io/get-pip.py | python - \
-    && pip install -U six oauth2client pyasn1 \
-    && pip install \
+    && pip3 install -U six oauth2client pyasn1 \
+    && pip3 install \
         Mopidy-Moped \
         Mopidy-GMusic \
         Mopidy-Iris \
