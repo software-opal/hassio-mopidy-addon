@@ -1,5 +1,4 @@
-FROM arm32v7/debian:buster
-COPY qemu-arm-static /usr/bin
+FROM hassioaddons/debian-base-armv7:3.2.1
 
 ENV LANG C.UTF-8
 
@@ -18,10 +17,19 @@ RUN set -ex \
         libz-dev \
         python-crypto \
     && apt-get clean \
-    && curl -L https://apt.mopidy.com/mopidy.gpg -o /tmp/mopidy.gpg \
-    && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
+
+RUN set -ex \
+    # Official Mopidy install for Debian/Ubuntu along with some extensions
+    # (see https://docs.mopidy.com/en/latest/installation/debian/ )
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+      ca-certificates \
+    && curl -v -L https://apt.mopidy.com/mopidy.gpg -o /tmp/mopidy.gpg \
+    && curl -v -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
     && apt-key add /tmp/mopidy.gpg \
     && apt-get update \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
 RUN set -ex \
